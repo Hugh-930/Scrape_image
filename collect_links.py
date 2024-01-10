@@ -26,3 +26,7 @@ class CollectLinks:
         chrome_options.add_argument('--disable-dev-shm-usage')
         self.browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
+    def get_scroll(self):
+        pos = self.browser.execute_script("return window.pageYOffset;")
+        return pos
+
