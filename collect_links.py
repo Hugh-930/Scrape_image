@@ -30,3 +30,7 @@ class CollectLinks:
         pos = self.browser.execute_script("return window.pageYOffset;")
         return pos
 
+    def highlight(self, element):
+        self.browser.execute_script("arguments[0].setAttribute('style', arguments[1]);", element,
+                                    "background: yellow; border: 2px solid red;")
+
