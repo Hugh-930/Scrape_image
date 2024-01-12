@@ -38,9 +38,19 @@ class CollectLinks:
         return pos
 
     def wait_and_click(self, xpath):
-        w = WebDriverWait(self.browser, 15)
-        elem = w.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-        elem.click()
+        #  Sometimes click fails unreasonably. So tries to click at all cost.
+        try:
+            w = WebDriverWait(self.browser, 15)
+            elem = w.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+            elem.click()
+            self.highlight(elem)
+        except Exception as e:
+            print('Click time out - {}'.format(xpath))
+            print('Refreshing browser...')
+            self.browser.refresh()
+            time.sleep(2)
+            return self.wait_and_click(xpath)
+
         return elem
 
     def highlight(self, element):
