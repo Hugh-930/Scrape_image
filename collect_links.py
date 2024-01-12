@@ -37,6 +37,12 @@ class CollectLinks:
         pos = self.browser.execute_script("return window.pageYOffset;")
         return pos
 
+    def wait_and_click(self, xpath):
+        w = WebDriverWait(self.browser, 15)
+        elem = w.until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        elem.click()
+        return elem
+
     def highlight(self, element):
         self.browser.execute_script("arguments[0].setAttribute('style', arguments[1]);", element,
                                     "background: yellow; border: 2px solid red;")
