@@ -57,3 +57,7 @@ class CollectLinks:
         self.browser.execute_script("arguments[0].setAttribute('style', arguments[1]);", element,
                                     "background: yellow; border: 2px solid red;")
 
+    @staticmethod
+    def remove_duplicates(_list):
+        return list(dict.fromkeys(_list))
+
