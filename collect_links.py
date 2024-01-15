@@ -69,5 +69,8 @@ class CollectLinks:
         print('Scrolling down')
 
         elem = self.browser.find_element(By.TAG_NAME, "body")
+
+        last_scroll = 0
+        scroll_patience = 0
         return []
 
