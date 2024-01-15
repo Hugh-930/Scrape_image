@@ -80,5 +80,6 @@ class CollectLinks:
 
             scroll = self.get_scroll()
             if scroll == last_scroll:
+                scroll_patience += 1
         return []
 
