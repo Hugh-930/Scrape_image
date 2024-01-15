@@ -72,5 +72,13 @@ class CollectLinks:
 
         last_scroll = 0
         scroll_patience = 0
+        NUM_MAX_SCROLL_PATIENCE = 50
+
+        while True:
+            elem.send_keys(Keys.PAGE_DOWN)
+            time.sleep(0.2)
+
+            scroll = self.get_scroll()
+            if scroll == last_scroll:
         return []
 
