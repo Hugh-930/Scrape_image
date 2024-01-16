@@ -90,7 +90,7 @@ class CollectLinks:
 
         print('Scraping links')
 
-        imgs = self.browser.find_elements(By.XPATH, '//img[@class="rg_i Q4LuWd"]')
+        imgs = self.browser.find_elements(By.XPATH, '//div[@jsname="dTDiAc"]/div[@jsname="qQjpJ"]//img')
 
         links = []
         for idx, img in enumerate(imgs):
