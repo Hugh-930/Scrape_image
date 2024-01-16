@@ -81,5 +81,30 @@ class CollectLinks:
             scroll = self.get_scroll()
             if scroll == last_scroll:
                 scroll_patience += 1
-        return []
+            else:
+                scroll_patience = 0
+                last_scroll = scroll
+
+            if scroll_patience >= NUM_MAX_SCROLL_PATIENCE:
+                break
+
+        print('Scraping links')
+
+        imgs = self.browser.find_elements(By.XPATH, '//img[@class="rg_i Q4LuWd"]')
+
+        links = []
+        for idx, img in enumerate(imgs):
+            try:
+                src = img.get_attribute("src")
+                links.append(src)
+
+            except Exception as e:
+                print('[Exception occurred while collecting links from google] {}'.format(e))
+
+        links = self.remove_duplicates(links)
+
+        print('Collect links done. Site: {}, Keyword: {}, Total: {}'.format('google', keyword, len(links)))
+        self.browser.close()
+
+        return links
 
