@@ -31,6 +31,8 @@ class CollectLinks:
         chrome_options = Options()
         chrome_options.add_argument('--no-sandbox')  # To maintain user cookies
         chrome_options.add_argument('--disable-dev-shm-usage')
+        if no_gui:
+            chrome_options.add_argument('--headless')
         self.browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
     def get_scroll(self):
