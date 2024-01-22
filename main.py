@@ -70,5 +70,10 @@ class AutoCrawler:
 
         print('{} keywords found: {}'.format(len(keywords), keywords))
 
+        # re-save sorted keywords
+        with open(keywords_file, 'w+', encoding='utf-8') as f:
+            for keyword in keywords:
+                f.write('{}\n'.format(keyword))
+
         return keywords
 
