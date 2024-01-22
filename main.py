@@ -52,3 +52,10 @@ class AutoCrawler:
 
         os.makedirs('./{}'.format(self.download_path), exist_ok=True)
 
+    @staticmethod
+    def make_dir(dirname):
+        current_path = os.getcwd()
+        path = os.path.join(current_path, dirname)
+        if not os.path.exists(path):
+            os.makedirs(path)
+
