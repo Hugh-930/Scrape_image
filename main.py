@@ -62,6 +62,16 @@ class AutoCrawler:
         return paths
 
     @staticmethod
+    def all_files(path):
+        paths = []
+        for root, dirs, files in os.walk(path):
+            for file in files:
+                if os.path.isfile(path + '/' + file):
+                    paths.append(path + '/' + file)
+
+        return paths
+
+    @staticmethod
     def make_dir(dirname):
         current_path = os.getcwd()
         path = os.path.join(current_path, dirname)
