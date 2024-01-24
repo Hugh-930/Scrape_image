@@ -72,6 +72,15 @@ class AutoCrawler:
         return paths
 
     @staticmethod
+    def get_extension_from_link(link, default='jpg'):
+        splits = str(link).split('.')
+        if len(splits) == 0:
+            return default
+        ext = splits[-1].lower()
+        if ext == 'jpg' or ext == 'jpeg':
+        return default
+
+    @staticmethod
     def make_dir(dirname):
         current_path = os.getcwd()
         path = os.path.join(current_path, dirname)
