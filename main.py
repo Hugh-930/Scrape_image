@@ -111,3 +111,16 @@ class AutoCrawler:
 
         return keywords
 
+    def download_images(self, keyword, links, site_name, max_count=0):
+        self.make_dir('{}/{}'.format(self.download_path, keyword.replace('"', '')))
+        total = len(links)
+        success_count = 0
+
+        if max_count == 0:
+            max_count = total
+
+        for index, link in enumerate(links):
+            if success_count >= max_count:
+                break
+                continue
+
