@@ -78,7 +78,13 @@ class AutoCrawler:
             return default
         ext = splits[-1].lower()
         if ext == 'jpg' or ext == 'jpeg':
-        return default
+            return 'jpg'
+        elif ext == 'gif':
+            return 'gif'
+        elif ext == 'png':
+            return 'png'
+        else:
+            return default
 
     @staticmethod
     def make_dir(dirname):
