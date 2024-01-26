@@ -130,5 +130,18 @@ class AutoCrawler:
                 ext = self.get_extension_from_link(link)
 
                 no_ext_path = '{}/{}/{}_{}'.format(self.download_path.replace('"', ''), keyword, site_name,
+                                                   str(index).zfill(4))
+                path = no_ext_path + '.' + ext
+                with open(path, 'wb') as file:
+                    shutil.copyfileobj(response.raw, file)
+
+                success_count += 1
+                del response
+
+            except KeyboardInterrupt:
+                break
+
+            except Exception as e:
+                print('Download failed - ', e)
                 continue
 
