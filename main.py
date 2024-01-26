@@ -122,5 +122,13 @@ class AutoCrawler:
         for index, link in enumerate(links):
             if success_count >= max_count:
                 break
+
+            try:
+                print('Downloading {} from {}: {} / {}'.format(keyword, site_name, success_count + 1, max_count))
+
+                response = requests.get(link, stream=True, timeout=10)
+                ext = self.get_extension_from_link(link)
+
+                no_ext_path = '{}/{}/{}_{}'.format(self.download_path.replace('"', ''), keyword, site_name,
                 continue
 
