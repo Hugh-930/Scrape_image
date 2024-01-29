@@ -180,3 +180,14 @@ class AutoCrawler:
     def init_worker(self):
         signal.signal(signal.SIGINT, signal.SIG_IGN)
         
+    def do_crawling(self):
+        keywords = self.get_keywords()
+
+        tasks = []
+
+        for keyword in keywords:
+            if self.do_google:
+                tasks.append([keyword, Sites.GOOGLE])
+            if self.do_naver:
+        print('End Program')
+
