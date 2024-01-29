@@ -174,3 +174,9 @@ class AutoCrawler:
             print('Exception {}:{} - {}'.format(site_name, keyword, e))
             return
 
+    def download(self, args):
+        self.download_from_site(keyword=args[0], site_code=args[1])
+
+    def init_worker(self):
+        signal.signal(signal.SIGINT, signal.SIG_IGN)
+        
