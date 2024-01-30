@@ -189,5 +189,10 @@ class AutoCrawler:
             if self.do_google:
                 tasks.append([keyword, Sites.GOOGLE])
             if self.do_naver:
+                tasks.append([keyword, Sites.NAVER])
+
+        pool = Pool(self.n_threads, initializer=self.init_worker)
+        pool.map(self.download, tasks)
+        pool.terminate()
         print('End Program')
 
