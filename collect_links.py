@@ -110,3 +110,15 @@ class CollectLinks:
 
         return links
 
+    def naver(self, keyword, add_url=""):
+        self.browser.get(
+            "https://search.naver.com/search.naver?where=image&sm=tab_jum&query={}{}".format(keyword, add_url))
+
+        time.sleep(1)
+
+        print('Scrolling down')
+
+        elem = self.browser.find_element(By.TAG_NAME, "body")
+
+        return []
+
