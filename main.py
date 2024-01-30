@@ -194,5 +194,8 @@ class AutoCrawler:
         pool = Pool(self.n_threads, initializer=self.init_worker)
         pool.map(self.download, tasks)
         pool.terminate()
+        pool.join()
+        print('Task ended. Pool join.')
+
         print('End Program')
 
