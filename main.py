@@ -199,3 +199,20 @@ class AutoCrawler:
 
         print('End Program')
 
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--skip', type=str, default='true',
+                        help='Skips keyword already downloaded before. This is needed when re-downloading.')
+    parser.add_argument('--threads', type=int, default=4, help='Number of threads to download.')
+    parser.add_argument('--google', type=str, default='true', help='Download from google.com (boolean)')
+    parser.add_argument('--naver', type=str, default='true', help='Download from naver.com (boolean)')
+    args = parser.parse_args()
+
+    _skip = False if str(args.skip).lower() == 'false' else True
+    _threads = args.threads
+    _google = False if str(args.google).lower() == 'false' else True
+    _naver = False if str(args.naver).lower() == 'false' else True
+
+    crawler = AutoCrawler(skip_already_exist=_skip, n_threads=_threads,
+                          do_google=_google, do_naver=_naver)
+    crawler.do_crawling()
