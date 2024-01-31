@@ -120,5 +120,15 @@ class CollectLinks:
 
         elem = self.browser.find_element(By.TAG_NAME, "body")
 
+        for i in range(60):
+            elem.send_keys(Keys.PAGE_DOWN)
+            time.sleep(0.2)
+
+        imgs = self.browser.find_elements(By.XPATH, '//div[@class="photo_grid _box"]//img[@class="_img"]')
+
+        print('Scraping links')
+
+        links = []
+
         return []
 
