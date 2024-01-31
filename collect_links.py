@@ -130,5 +130,18 @@ class CollectLinks:
 
         links = []
 
-        return []
+        for img in imgs:
+            try:
+                src = img.get_attribute("src")
+                if src[0] != 'd':
+                    links.append(src)
+            except Exception as e:
+                print('[Exception occurred while collecting links from naver] {}'.format(e))
+
+        links = self.remove_duplicates(links)
+
+        print('Collect links done. Site: {}, Keyword: {}, Total: {}'.format('naver', keyword, len(links)))
+        self.browser.close()
+
+        return links
 
