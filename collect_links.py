@@ -124,7 +124,7 @@ class CollectLinks:
             elem.send_keys(Keys.PAGE_DOWN)
             time.sleep(0.2)
 
-        imgs = self.browser.find_elements(By.XPATH, '//div[@class="photo_grid _box"]//img[@class="_img"]')
+        imgs = self.browser.find_elements(By.XPATH, '//div[@class="tile_item _fe_image_tab_content_tile"]//img[@class="_fe_image_tab_content_thumbnail_image"]')
 
         print('Scraping links')
 
