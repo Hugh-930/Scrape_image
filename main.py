@@ -145,6 +145,17 @@ class AutoCrawler:
                 success_count += 1
                 del response
 
+                ext2 = self.validate_image(path)
+                if ext2 is None:
+                    print('Unreadable file - {}'.format(link))
+                    os.remove(path)
+                    success_count -= 1
+                else:
+                    if ext != ext2:
+                        path2 = no_ext_path + '.' + ext2
+                        os.rename(path, path2)
+                        print('Renamed extension {} -> {}'.format(ext, ext2))
+
             except KeyboardInterrupt:
                 break
 
