@@ -87,6 +87,13 @@ class AutoCrawler:
             return default
 
     @staticmethod
+    def validate_image(path):
+        ext = imghdr.what(path)
+        if ext == 'jpeg':
+            ext = 'jpg'
+        return ext  # returns None if not valid
+
+    @staticmethod
     def make_dir(dirname):
         current_path = os.getcwd()
         path = os.path.join(current_path, dirname)
