@@ -118,6 +118,14 @@ class AutoCrawler:
 
         return keywords
 
+    @staticmethod
+    def save_object_to_file(object, file_path, is_base64=False):
+        try:
+            with open('{}'.format(file_path), 'wb') as file:
+                if is_base64:
+                    file.write(object)
+            print('Save failed - {}'.format(e))
+
     def download_images(self, keyword, links, site_name, max_count=0):
         self.make_dir('{}/{}'.format(self.download_path, keyword.replace('"', '')))
         total = len(links)
