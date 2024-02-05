@@ -124,6 +124,9 @@ class AutoCrawler:
             with open('{}'.format(file_path), 'wb') as file:
                 if is_base64:
                     file.write(object)
+                else:
+                    shutil.copyfileobj(object.raw, file)
+        except Exception as e:
             print('Save failed - {}'.format(e))
 
     def download_images(self, keyword, links, site_name, max_count=0):
@@ -147,8 +150,7 @@ class AutoCrawler:
                 no_ext_path = '{}/{}/{}_{}'.format(self.download_path.replace('"', ''), keyword, site_name,
                                                    str(index).zfill(4))
                 path = no_ext_path + '.' + ext
-                with open(path, 'wb') as file:
-                    shutil.copyfileobj(response.raw, file)
+                self.save_object_to_file(response, path)
 
                 success_count += 1
                 del response
