@@ -153,13 +153,23 @@ class AutoCrawler:
             try:
                 print('Downloading {} from {}: {} / {}'.format(keyword, site_name, success_count + 1, max_count))
 
-                response = requests.get(link, stream=True, timeout=10)
-                ext = self.get_extension_from_link(link)
+                if str(link).startswith('data:image/jpeg;base64'):
+                    response = self.base64_to_object(link)
+                    ext = 'jpg'
+                    is_base64 = True
+                elif str(link).startswith('data:image/png;base64'):
+                    response = self.base64_to_object(link)
+                    ext = 'png'
+                    is_base64 = True
+                else:
+                    response = requests.get(link, stream=True, timeout=10)
+                    ext = self.get_extension_from_link(link)
+                    is_base64 = False
 
                 no_ext_path = '{}/{}/{}_{}'.format(self.download_path.replace('"', ''), keyword, site_name,
                                                    str(index).zfill(4))
                 path = no_ext_path + '.' + ext
-                self.save_object_to_file(response, path)
+                self.save_object_to_file(response, path, is_base64=is_base64)
 
                 success_count += 1
                 del response
@@ -177,7 +187,7 @@ class AutoCrawler:
 
             except KeyboardInterrupt:
                 break
-
+                        
             except Exception as e:
                 print('Download failed - ', e)
                 continue
