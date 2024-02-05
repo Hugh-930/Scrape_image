@@ -22,6 +22,9 @@ import signal
 import argparse
 from collect_links import CollectLinks
 import imghdr
+import base64
+from pathlib import Path
+import random
 
 
 class Sites:
@@ -128,6 +131,12 @@ class AutoCrawler:
                     shutil.copyfileobj(object.raw, file)
         except Exception as e:
             print('Save failed - {}'.format(e))
+
+    @staticmethod
+    def base64_to_object(src):
+        header, encoded = str(src).split(',', 1)
+        data = base64.decodebytes(bytes(encoded, encoding='utf-8'))
+        return data
 
     def download_images(self, keyword, links, site_name, max_count=0):
         self.make_dir('{}/{}'.format(self.download_path, keyword.replace('"', '')))
