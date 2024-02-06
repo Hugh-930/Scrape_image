@@ -45,6 +45,13 @@ class Sites:
             return 'naver'
 
     @staticmethod
+    def get_face_url(code):
+        if code == Sites.GOOGLE or Sites.GOOGLE_FULL:
+            return "&tbs=itp:face"
+        if code == Sites.NAVER or Sites.NAVER_FULL:
+            return "&face=1"
+
+
 class AutoCrawler:
     def __init__(self, skip_already_exist=True, n_threads=4, do_google=True, do_naver=True, download_path='download'):
         self.skip = skip_already_exist
