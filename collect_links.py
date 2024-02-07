@@ -147,3 +147,12 @@ class CollectLinks:
 
         return links
 
+    def google_full(self, keyword, add_url="", limit=100):
+        print('[Full Resolution Mode]')
+
+        self.browser.get("https://www.google.com/search?q={}&tbm=isch{}".format(keyword, add_url))
+        time.sleep(1)
+
+        # Click the first image to get full resolution images
+        return []
+
