@@ -204,9 +204,10 @@ class AutoCrawler:
 
     def download_from_site(self, keyword, site_code):
         site_name = Sites.get_text(site_code)
+        add_url = Sites.get_face_url(site_code) if self.face else ""
 
         try:
-            collect = CollectLinks()  # initialize chrome driver
+            collect = CollectLinks(no_gui=self.no_gui)  # initialize chrome driver
         except Exception as e:
             print('Error occurred while initializing chromedriver - {}'.format(e))
             return
@@ -215,15 +216,15 @@ class AutoCrawler:
             print('Collecting links... {} from {}'.format(keyword, site_name))
 
             if site_code == Sites.GOOGLE:
-                links = collect.google(keyword)
+                links = collect.google(keyword, add_url)
             elif site_code == Sites.NAVER:
-                links = collect.naver(keyword)
+                links = collect.naver(keyword, add_url)
             else:
                 print('Invalid Site Code')
                 links = []
 
             print('Downloading images from collected links... {} from {}'.format(keyword, site_name))
-            self.download_images(keyword, links, site_name)
+            self.download_images(keyword, links, site_name, max_count=self.limit)
 
             print('Done {} : {}'.format(site_name, keyword))
 
