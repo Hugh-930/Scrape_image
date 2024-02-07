@@ -27,12 +27,14 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 class CollectLinks:
-    def __init__(self, no_gui=False):
+    def __init__(self, no_gui=False, proxy=None):
         chrome_options = Options()
         chrome_options.add_argument('--no-sandbox')  # To maintain user cookies
         chrome_options.add_argument('--disable-dev-shm-usage')
         if no_gui:
             chrome_options.add_argument('--headless')
+        if proxy:
+            chrome_options.add_argument("--proxy-server={}".format(proxy))
         self.browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
     def get_scroll(self):
