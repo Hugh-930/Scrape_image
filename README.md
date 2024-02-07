@@ -38,3 +38,15 @@ python3 main.py [--skip true] [--threads 4] [--google true] [--naver true] [--fu
 ```
 
 
+# Remote crawling through SSH on your server
+
+```
+sudo apt-get install xvfb <- This is virtual display
+
+sudo apt-get install screen <- This will allow you to close SSH terminal while running.
+
+screen -S s1
+
+Xvfb :99 -ac & DISPLAY=:99 python3 main.py
+```
+
