@@ -154,5 +154,6 @@ class CollectLinks:
         time.sleep(1)
 
         # Click the first image to get full resolution images
+        self.wait_and_click('//div[@jsname="dTDiAc"]')
         return []
 
