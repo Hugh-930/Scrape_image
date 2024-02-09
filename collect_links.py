@@ -155,5 +155,12 @@ class CollectLinks:
 
         # Click the first image to get full resolution images
         self.wait_and_click('//div[@jsname="dTDiAc"]')
+        time.sleep(1)
+
+        body = self.browser.find_element(By.TAG_NAME, "body")
+
+        print('Scraping links')
+
+        links = []
         return []
 
