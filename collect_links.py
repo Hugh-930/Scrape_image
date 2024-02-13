@@ -163,5 +163,21 @@ class CollectLinks:
 
         links = []
         limit = 10000 if limit == 0 else limit
+        count = 1
+        last_scroll = 0
+        scroll_patience = 0
+        NUM_MAX_SCROLL_PATIENCE = 100
+
+        while len(links) < limit:
+            try:
+                # Google renders compressed image first, and overlaps with full image later.
+                xpath = '//div[@jsname="figiqf"]//img[not(contains(@src,"gstatic.com"))]'
+
+                t1 = time.time()
+                while True:
+                    imgs = body.find_elements(By.XPATH, xpath)
+                    t2 = time.time()
+                    if len(imgs) > 0:
+                        break
         return links
 
