@@ -162,5 +162,6 @@ class CollectLinks:
         print('Scraping links')
 
         links = []
-        return []
+        limit = 10000 if limit == 0 else limit
+        return links
 
