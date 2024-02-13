@@ -171,7 +171,7 @@ class CollectLinks:
         while len(links) < limit:
             try:
                 # Google renders compressed image first, and overlaps with full image later.
-                xpath = '//div[@jsname="figiqf"]//img[not(contains(@src,"gstatic.com"))]'
+                xpath = '//div[@class="islsp"]//img[@class="n3VNCb"]'
 
                 t1 = time.time()
                 while True:
@@ -179,5 +179,16 @@ class CollectLinks:
                     t2 = time.time()
                     if len(imgs) > 0:
                         break
+                    if t2 - t1 > 5:
+                        print(f"Failed to locate image by XPATH: {xpath}")
+                        break
+                    time.sleep(0.1)
+
+                if len(imgs) > 0:
+                    self.highlight(imgs[0])
+                    src = imgs[0].get_attribute('src')
+
+                    if src is not None and src not in links:
+                        links.append(src)
         return links
 
