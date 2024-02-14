@@ -190,5 +190,33 @@ class CollectLinks:
 
                     if src is not None and src not in links:
                         links.append(src)
+                        print('%d: %s' % (count, src))
+                        count += 1
+            except KeyboardInterrupt:
+                break
+                
+            except StaleElementReferenceException:
+                # print('[Expected Exception - StaleElementReferenceException]')
+                pass
+            except Exception as e:
+                print('[Exception occurred while collecting links from google_full] {}'.format(e))
+
+            scroll = self.get_scroll()
+            if scroll == last_scroll:
+                scroll_patience += 1
+            else:
+                scroll_patience = 0
+                last_scroll = scroll
+
+            if scroll_patience >= NUM_MAX_SCROLL_PATIENCE:
+                break
+
+            body.send_keys(Keys.RIGHT)
+
+        links = self.remove_duplicates(links)
+
+        print('Collect links done. Site: {}, Keyword: {}, Total: {}'.format('google_full', keyword, len(links)))
+        self.browser.close()
+
         return links
 
