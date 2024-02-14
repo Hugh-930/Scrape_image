@@ -171,7 +171,7 @@ class CollectLinks:
         while len(links) < limit:
             try:
                 # Google renders compressed image first, and overlaps with full image later.
-                xpath = '//div[@class="islsp"]//img[@class="n3VNCb"]'
+                xpath = '//div[@jsname="figiqf"]//img[not(contains(@src,"gstatic.com"))]'
 
                 t1 = time.time()
                 while True:
