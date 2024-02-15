@@ -232,5 +232,16 @@ class CollectLinks:
         print('Scraping links')
 
         # Click the first image
-        return []
+        self.wait_and_click('//div[@class="tile_item _fe_image_tab_content_tile"]//img[@class="_fe_image_tab_content_thumbnail_image"]')
+        time.sleep(1)
+
+        links = []
+        count = 1
+
+        last_scroll = 0
+        scroll_patience = 0
+
+        while True:
+            try:
+        return links
 
