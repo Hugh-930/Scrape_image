@@ -220,3 +220,13 @@ class CollectLinks:
 
         return links
 
+    def naver_full(self, keyword, add_url=""):
+        print('[Full Resolution Mode]')
+
+        self.browser.get(
+            "https://search.naver.com/search.naver?where=image&sm=tab_jum&query={}{}".format(keyword, add_url))
+        time.sleep(1)
+
+        elem = self.browser.find_element(By.TAG_NAME, "body")
+        return []
+
