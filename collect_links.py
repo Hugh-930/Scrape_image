@@ -228,5 +228,9 @@ class CollectLinks:
         time.sleep(1)
 
         elem = self.browser.find_element(By.TAG_NAME, "body")
+
+        print('Scraping links')
+
+        # Click the first image
         return []
 
