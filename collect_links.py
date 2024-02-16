@@ -243,5 +243,7 @@ class CollectLinks:
 
         while True:
             try:
+                xpath = '//img[@class="_fe_image_viewer_image_fallback_target"]'
+                imgs = self.browser.find_elements(By.XPATH, xpath)
         return links
 
