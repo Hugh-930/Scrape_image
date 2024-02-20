@@ -261,5 +261,23 @@ class CollectLinks:
             except Exception as e:
                 print('[Exception occurred while collecting links from naver_full] {}'.format(e))
 
+            scroll = self.get_scroll()
+            if scroll == last_scroll:
+                scroll_patience += 1
+            else:
+                scroll_patience = 0
+                last_scroll = scroll
+
+            if scroll_patience >= 100:
+                break
+
+            elem.send_keys(Keys.RIGHT)
+
+        links = self.remove_duplicates(links)
+
+        print('Collect links done. Site: {}, Keyword: {}, Total: {}'.format('naver_full', keyword, len(links)))
+        self.browser.close()
+
         return links
+
 
