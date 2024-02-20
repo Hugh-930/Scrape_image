@@ -245,5 +245,21 @@ class CollectLinks:
             try:
                 xpath = '//img[@class="_fe_image_viewer_image_fallback_target"]'
                 imgs = self.browser.find_elements(By.XPATH, xpath)
+
+                for img in imgs:
+                    self.highlight(img)
+                    src = img.get_attribute('src')
+
+                    if src not in links and src is not None:
+                        links.append(src)
+                        print('%d: %s' % (count, src))
+                        count += 1
+
+            except StaleElementReferenceException:
+                # print('[Expected Exception - StaleElementReferenceException]')
+                pass
+            except Exception as e:
+                print('[Exception occurred while collecting links from naver_full] {}'.format(e))
+
         return links
 
