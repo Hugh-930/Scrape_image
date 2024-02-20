@@ -54,7 +54,7 @@ class Sites:
 
 class AutoCrawler:
     def __init__(self, skip_already_exist=True, n_threads=4, do_google=True, do_naver=True, download_path='download',
-                 full_resolution=False, face=False):
+                 full_resolution=False, face=False, no_gui=False, limit=0):
         self.skip = skip_already_exist
         self.n_threads = n_threads
         self.do_google = do_google
@@ -62,6 +62,8 @@ class AutoCrawler:
         self.download_path = download_path
         self.full_resolution = full_resolution
         self.face = face
+        self.no_gui = no_gui
+        self.limit = limit
 
         os.makedirs('./{}'.format(self.download_path), exist_ok=True)
 
