@@ -219,14 +219,23 @@ class AutoCrawler:
 
             if site_code == Sites.GOOGLE:
                 links = collect.google(keyword, add_url)
+
             elif site_code == Sites.NAVER:
                 links = collect.naver(keyword, add_url)
+
+            elif site_code == Sites.GOOGLE_FULL:
+                links = collect.google_full(keyword, add_url, self.limit)
+
+            elif site_code == Sites.NAVER_FULL:
+                links = collect.naver_full(keyword, add_url)
+
             else:
                 print('Invalid Site Code')
                 links = []
 
             print('Downloading images from collected links... {} from {}'.format(keyword, site_name))
             self.download_images(keyword, links, site_name, max_count=self.limit)
+            Path('{}/{}/{}_done'.format(self.download_path, keyword.replace('"', ''), site_name)).touch()
 
             print('Done {} : {}'.format(site_name, keyword))
 
