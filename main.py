@@ -255,15 +255,34 @@ class AutoCrawler:
         tasks = []
 
         for keyword in keywords:
-            if self.do_google:
-                tasks.append([keyword, Sites.GOOGLE])
-            if self.do_naver:
-                tasks.append([keyword, Sites.NAVER])
+            dir_name = '{}/{}'.format(self.download_path, keyword)
+            google_done = os.path.exists(os.path.join(os.getcwd(), dir_name, 'google_done'))
+            naver_done = os.path.exists(os.path.join(os.getcwd(), dir_name, 'naver_done'))
+            if google_done and naver_done and self.skip:
+                print('Skipping done task {}'.format(dir_name))
+                continue
 
-        pool = Pool(self.n_threads, initializer=self.init_worker)
-        pool.map(self.download, tasks)
-        pool.terminate()
-        pool.join()
+            if self.do_google and not google_done:
+                if self.full_resolution:
+                    tasks.append([keyword, Sites.GOOGLE_FULL])
+                else:
+                    tasks.append([keyword, Sites.GOOGLE])
+
+            if self.do_naver and not naver_done:
+                if self.full_resolution:
+                    tasks.append([keyword, Sites.NAVER_FULL])
+                else:
+                    tasks.append([keyword, Sites.NAVER])
+
+        try:
+            pool = Pool(self.n_threads, initializer=self.init_worker)
+            pool.map(self.download, tasks)
+        except KeyboardInterrupt:
+            pool.terminate()
+            pool.join()
+        else:
+            pool.terminate()
+            pool.join()
         print('Task ended. Pool join.')
 
         print('End Program')
