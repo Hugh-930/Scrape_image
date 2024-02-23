@@ -294,13 +294,28 @@ if __name__ == '__main__':
     parser.add_argument('--threads', type=int, default=4, help='Number of threads to download.')
     parser.add_argument('--google', type=str, default='true', help='Download from google.com (boolean)')
     parser.add_argument('--naver', type=str, default='true', help='Download from naver.com (boolean)')
+    parser.add_argument('--full', type=str, default='false',
+                        help='Download full resolution image instead of thumbnails (slow)')
+    parser.add_argument('--face', type=str, default='false', help='Face search mode')
+    parser.add_argument('--no_gui', type=str, default='auto', help='No GUI mode. (headless mode)')
     args = parser.parse_args()
 
     _skip = False if str(args.skip).lower() == 'false' else True
     _threads = args.threads
     _google = False if str(args.google).lower() == 'false' else True
     _naver = False if str(args.naver).lower() == 'false' else True
+    _full = False if str(args.full).lower() == 'false' else True
+    _face = False if str(args.face).lower() == 'false' else True
+
+    no_gui_input = str(args.no_gui).lower()
+    if no_gui_input == 'auto':
+        _no_gui = _full
+    elif no_gui_input == 'true':
+        _no_gui = True
+    else:
+        _no_gui = False
 
     crawler = AutoCrawler(skip_already_exist=_skip, n_threads=_threads,
-                          do_google=_google, do_naver=_naver)
+                          do_google=_google, do_naver=_naver, full_resolution=_full,
+                          face=_face, no_gui=_no_gui)
     crawler.do_crawling()
