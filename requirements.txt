@@ -1,3 +1,4 @@
+certifi
 requests
 selenium
 webdriver-manager
