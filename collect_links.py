@@ -37,6 +37,29 @@ class CollectLinks:
             chrome_options.add_argument("--proxy-server={}".format(proxy))
         self.browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
+        browser_version = 'Failed to detect version'
+        chromedriver_version = 'Failed to detect version'
+        major_version_different = False
+
+        if 'browserVersion' in self.browser.capabilities:
+            browser_version = str(self.browser.capabilities['browserVersion'])
+
+        if 'chrome' in self.browser.capabilities:
+            if 'chromedriverVersion' in self.browser.capabilities['chrome']:
+                chromedriver_version = str(self.browser.capabilities['chrome']['chromedriverVersion']).split(' ')[0]
+
+        if browser_version.split('.')[0] != chromedriver_version.split('.')[0]:
+            major_version_different = True
+
+        print('_________________________________')
+        print('Current web-browser version:\t{}'.format(browser_version))
+        print('Current chrome-driver version:\t{}'.format(chromedriver_version))
+        if major_version_different:
+            print('warning: Version different')
+            print(
+                'Download correct version at "http://chromedriver.chromium.org/downloads" and place in "./chromedriver"')
+        print('_________________________________')
+
     def get_scroll(self):
         pos = self.browser.execute_script("return window.pageYOffset;")
         return pos
