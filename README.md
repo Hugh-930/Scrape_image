@@ -43,6 +43,9 @@ python3 main.py [--skip true] [--threads 4] [--google true] [--naver true] [--fu
 You can download full resolution image of JPG, GIF, PNG files by specifying --full true
 
 ![](docs/full.gif)
+
+
+
 # Remote crawling through SSH on your server
 
 ```
