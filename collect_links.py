@@ -304,3 +304,7 @@ class CollectLinks:
         return links
 
 
+if __name__ == '__main__':
+    collect = CollectLinks()
+    links = collect.naver_full('박보영')
+    print(len(links), links)
