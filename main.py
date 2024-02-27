@@ -298,6 +298,8 @@ if __name__ == '__main__':
                         help='Download full resolution image instead of thumbnails (slow)')
     parser.add_argument('--face', type=str, default='false', help='Face search mode')
     parser.add_argument('--no_gui', type=str, default='auto', help='No GUI mode. (headless mode)')
+    parser.add_argument('--limit', type=int, default=0,
+                        help='Maximum count of images to download per site.')
     args = parser.parse_args()
 
     _skip = False if str(args.skip).lower() == 'false' else True
@@ -306,6 +308,7 @@ if __name__ == '__main__':
     _naver = False if str(args.naver).lower() == 'false' else True
     _full = False if str(args.full).lower() == 'false' else True
     _face = False if str(args.face).lower() == 'false' else True
+    _limit = int(args.limit)
 
     no_gui_input = str(args.no_gui).lower()
     if no_gui_input == 'auto':
@@ -317,5 +320,5 @@ if __name__ == '__main__':
 
     crawler = AutoCrawler(skip_already_exist=_skip, n_threads=_threads,
                           do_google=_google, do_naver=_naver, full_resolution=_full,
-                          face=_face, no_gui=_no_gui)
+                          face=_face, no_gui=_no_gui, limit=_limit)
     crawler.do_crawling()
