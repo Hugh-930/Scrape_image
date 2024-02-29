@@ -209,7 +209,10 @@ class AutoCrawler:
         add_url = Sites.get_face_url(site_code) if self.face else ""
 
         try:
-            collect = CollectLinks(no_gui=self.no_gui)  # initialize chrome driver
+            proxy = None
+            if self.proxy_list:
+                proxy = random.choice(self.proxy_list)
+            collect = CollectLinks(no_gui=self.no_gui, proxy=proxy)  # initialize chrome driver
         except Exception as e:
             print('Error occurred while initializing chromedriver - {}'.format(e))
             return
