@@ -54,7 +54,20 @@ class Sites:
 
 class AutoCrawler:
     def __init__(self, skip_already_exist=True, n_threads=4, do_google=True, do_naver=True, download_path='download',
-                 full_resolution=False, face=False, no_gui=False, limit=0):
+                 full_resolution=False, face=False, no_gui=False, limit=0, proxy_list=None):
+        """
+        :param skip_already_exist: Skips keyword already downloaded before. This is needed when re-downloading.
+        :param n_threads: Number of threads to download.
+        :param do_google: Download from google.com (boolean)
+        :param do_naver: Download from naver.com (boolean)
+        :param download_path: Download folder path
+        :param full_resolution: Download full resolution image instead of thumbnails (slow)
+        :param face: Face search mode
+        :param no_gui: No GUI mode. Acceleration for full_resolution mode.
+        :param limit: Maximum count of images to download. (0: infinite)
+        :param proxy_list: The proxy list. Every thread will randomly choose one from the list.
+        """
+
         self.skip = skip_already_exist
         self.n_threads = n_threads
         self.do_google = do_google
@@ -64,6 +77,7 @@ class AutoCrawler:
         self.face = face
         self.no_gui = no_gui
         self.limit = limit
+        self.proxy_list = proxy_list if proxy_list and len(proxy_list) > 0 else None
 
         os.makedirs('./{}'.format(self.download_path), exist_ok=True)
 
