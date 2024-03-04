@@ -304,6 +304,19 @@ class AutoCrawler:
 
         print('End Program')
 
+    def imbalance_check(self):
+        print('Data imbalance checking...')
+
+        dict_num_files = {}
+
+        for dir in self.all_dirs(self.download_path):
+            n_files = len(self.all_files(dir))
+            dict_num_files[dir] = n_files
+
+        avg = 0
+        for dir, n_files in dict_num_files.items():
+        pass
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
