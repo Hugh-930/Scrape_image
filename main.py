@@ -304,6 +304,7 @@ class AutoCrawler:
 
         print('End Program')
 
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--skip', type=str, default='true',
@@ -314,9 +315,15 @@ if __name__ == '__main__':
     parser.add_argument('--full', type=str, default='false',
                         help='Download full resolution image instead of thumbnails (slow)')
     parser.add_argument('--face', type=str, default='false', help='Face search mode')
-    parser.add_argument('--no_gui', type=str, default='auto', help='No GUI mode. (headless mode)')
+    parser.add_argument('--no_gui', type=str, default='auto',
+                        help='No GUI mode. Acceleration for full_resolution mode. '
+                             'But unstable on thumbnail mode. '
+                             'Default: "auto" - false if full=false, true if full=true')
     parser.add_argument('--limit', type=int, default=0,
                         help='Maximum count of images to download per site.')
+    parser.add_argument('--proxy-list', type=str, default='',
+                        help='The comma separated proxy list like: "socks://127.0.0.1:1080,http://127.0.0.1:1081". '
+                             'Every thread will randomly choose one from the list.')
     args = parser.parse_args()
 
     _skip = False if str(args.skip).lower() == 'false' else True
@@ -326,6 +333,7 @@ if __name__ == '__main__':
     _full = False if str(args.full).lower() == 'false' else True
     _face = False if str(args.face).lower() == 'false' else True
     _limit = int(args.limit)
+    _proxy_list = args.proxy_list.split(',')
 
     no_gui_input = str(args.no_gui).lower()
     if no_gui_input == 'auto':
@@ -335,7 +343,11 @@ if __name__ == '__main__':
     else:
         _no_gui = False
 
+    print(
+        'Options - skip:{}, threads:{}, google:{}, naver:{}, full_resolution:{}, face:{}, no_gui:{}, limit:{}, _proxy_list:{}'
+            .format(_skip, _threads, _google, _naver, _full, _face, _no_gui, _limit, _proxy_list))
+
     crawler = AutoCrawler(skip_already_exist=_skip, n_threads=_threads,
                           do_google=_google, do_naver=_naver, full_resolution=_full,
-                          face=_face, no_gui=_no_gui, limit=_limit)
+                          face=_face, no_gui=_no_gui, limit=_limit, proxy_list=_proxy_list)
     crawler.do_crawling()
