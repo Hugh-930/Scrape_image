@@ -315,6 +315,13 @@ class AutoCrawler:
 
         avg = 0
         for dir, n_files in dict_num_files.items():
+            avg += n_files / len(dict_num_files)
+            print('dir: {}, file_count: {}'.format(dir, n_files))
+
+        dict_too_small = {}
+
+        for dir, n_files in dict_num_files.items():
+            if n_files < avg * 0.5:
         pass
 
 
