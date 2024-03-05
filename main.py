@@ -322,7 +322,14 @@ class AutoCrawler:
 
         for dir, n_files in dict_num_files.items():
             if n_files < avg * 0.5:
-        pass
+                dict_too_small[dir] = n_files
+
+        if len(dict_too_small) >= 1:
+            print('Data imbalance detected.')
+            for dir, n_files in dict_too_small.items():
+                print('dir: {}, file_count: {}'.format(dir, n_files))
+        else:
+            print('Data imbalance not detected.')
 
 
 if __name__ == '__main__':
