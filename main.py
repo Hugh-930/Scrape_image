@@ -302,6 +302,8 @@ class AutoCrawler:
             pool.join()
         print('Task ended. Pool join.')
 
+        self.imbalance_check()
+
         print('End Program')
 
     def imbalance_check(self):
