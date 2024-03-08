@@ -1,4 +1,5 @@
 certifi
+chardet
 requests
 selenium
 webdriver-manager
