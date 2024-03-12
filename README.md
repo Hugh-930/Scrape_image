@@ -70,3 +70,8 @@ screen -S s1
 Xvfb :99 -ac & DISPLAY=:99 python3 main.py
 ```
 
+# Customize
+
+You can make your own crawler by changing collect_links.py
+
+# How to fix issues
