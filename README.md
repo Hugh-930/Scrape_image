@@ -75,3 +75,12 @@ Xvfb :99 -ac & DISPLAY=:99 python3 main.py
 You can make your own crawler by changing collect_links.py
 
 # How to fix issues
+
+As google site consistently changes, you may need to fix ```collect_links.py```
+
+1. Go to google image. [https://www.google.com/search?q=dog&source=lnms&tbm=isch](https://www.google.com/search?q=dog&source=lnms&tbm=isch)
+2. Open devloper tools on Chrome. (CTRL+SHIFT+I, CMD+OPTION+I)
+3. Designate an image to capture.
+![CleanShot 2023-10-24 at 17 59 57@2x](https://github.com/YoongiKim/AutoCrawler/assets/38288705/6488d6df-1f01-4dfd-8691-6c0ac142fc04)
+4. Checkout collect_links.py
+![CleanShot 2023-10-24 at 18 02 35@2x](https://github.com/YoongiKim/AutoCrawler/assets/38288705/097c6c03-dd43-45d4-939e-2f677f595362)
