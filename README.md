@@ -84,3 +84,8 @@ As google site consistently changes, you may need to fix ```collect_links.py```
 ![CleanShot 2023-10-24 at 17 59 57@2x](https://github.com/YoongiKim/AutoCrawler/assets/38288705/6488d6df-1f01-4dfd-8691-6c0ac142fc04)
 4. Checkout collect_links.py
 ![CleanShot 2023-10-24 at 18 02 35@2x](https://github.com/YoongiKim/AutoCrawler/assets/38288705/097c6c03-dd43-45d4-939e-2f677f595362)
+5. Docs for XPATH usage: [https://www.w3schools.com/xml/xpath_syntax.asp](https://www.w3schools.com/xml/xpath_syntax.asp)
+6. You can test XPATH using CTRL+F on your chrome developer tools.
+![CleanShot 2023-10-24 at 18 05 14@2x](https://github.com/YoongiKim/AutoCrawler/assets/38288705/7ce2601f-9d53-48ff-a1cf-1a2befcc510f)
+7. You need to find logic to crawling to work.
+
