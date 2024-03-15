@@ -1,6 +1,8 @@
 # AutoCrawler
 Google, Naver multiprocess image crawler (High Quality & Speed & Customizable)
 
+![](docs/animation.gif)
+
 # How to use
 
 1. Install Chrome
@@ -12,6 +14,8 @@ Google, Naver multiprocess image crawler (High Quality & Speed & Customizable)
 4. **Run "main.py"**
 
 5. Files will be downloaded to 'download' directory.
+
+
 # Arguments
 usage:
 ```
