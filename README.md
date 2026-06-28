@@ -1,5 +1,5 @@
-# AutoCrawler
-Google, Naver multiprocess image crawler (High Quality & Speed & Customizable)
+# Image Scraper
+multiprocess image scraper 
 
 ![](docs/animation.gif)
 
